@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+
+# SQLite database
+database/*.db
+database/*.sqlite
+database/*.sqlite3
+
+# Uploaded files
+uploads/*
+
+# Generated files
+filtered_transactions.csv
+
+# Generated charts
+static/images/*
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

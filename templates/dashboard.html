@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="logo">BankAI</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/upload">Upload</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/transactions">Transactions</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+    <div class="dashboard">
+        <h1>Dashboard</h1>
+        <p class="subtitle">
+            AI-powered overview of your financial transactions
+        </p>
+        <div class="cards">
+            <div class="dashboard-card">
+                <h3>Total Income</h3>
+                <p>₹{{ income }}</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Total Expense</h3>
+                <p>₹{{ expense }}</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Current Balance</h3>
+                <p>₹{{ balance }}</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Total Transactions</h3>
+                <p>{{ transactions }}</p>
+            </div>
+        </div>
+
+        <div class="insight-card">
+            <h2>🤖 AI Insights</h2>
+            <p><strong>Highest Income:</strong>
+                {{ highest_income["description"] }}
+                (₹{{ highest_income["credit"] }})
+            </p>
+
+            <p><strong>Highest Expense:</strong>
+                {{ highest_expense["description"] }}
+                (₹{{ highest_expense["debit"] }})
+            </p>
+
+            <p><strong>Most Frequent Category:</strong>
+                {{ top_category }}
+            </p>
+
+            <p><strong>Total Transactions:</strong>
+                {{ transactions }}
+            </p>
+        </div>
+
+        <div class="charts">
+            <div class="chart-container">
+                <h2>Income vs Expense (Pie)</h2>
+                <img src="{{ url_for('static', filename='images/pie_chart.png') }}">
+            </div>
+
+            <div class="chart-container">
+                <h2>Income vs Expense (Bar)</h2>
+                <img src="{{ url_for('static', filename='images/bar_chart.png') }}">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Bank Statement Analyzer | AI & Machine Learning Project</p>
+    </footer>
+</body>
+</html>

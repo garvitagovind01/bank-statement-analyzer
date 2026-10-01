@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">BankAI</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/upload">Upload</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/transactions">Transactions</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+    <div class="dashboard">
+        <!-- Search Section -->
+        <div class="search-container">
+            <h2>🔍 Search Transactions</h2>
+            <form method="GET" action="/transactions">
+                <input type="text" name="search" placeholder="Search by description..."
+                    value="{{ request.args.get('search', '') }}">
+                <select name="type">
+                    <option value="">All Transactions</option>
+                    <option value="income" {% if request.args.get('type')=='income' %}selected{% endif %}>
+                        Income
+                    </option>
+                    <option value="expense" {% if request.args.get('type')=='expense' %}selected{% endif %}>
+                        Expense
+                    </option>
+                </select>
+                <button type="submit">🔍 Search</button>
+
+                <a href="{{ url_for('download',
+                        search=request.args.get('search'),
+                        type=request.args.get('type')) }}" class="download-btn">
+                    ⬇ Download CSV
+                </a>
+           </form>
+        </div>
+
+        <!-- Transactions Table -->
+        <h1>📋 Transaction History</h1>
+        <div class="table-container">
+            {{ table|safe }}
+        </div>
+    </div>
+    <footer>
+        <p>© 2026 BankAI | AI & Machine Learning Project</p>
+    </footer>
+</body>
+</html>
